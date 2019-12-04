@@ -31,9 +31,19 @@ def extract_quotes(html: str = HTML) -> dict:
     quotes_regex = re.compile(r'"(.*)" - (.*)<')
     quotes = quotes_regex.findall(html)
 
+    # Using finditer:
+    #   group(0) - full match string
+    #   group(1) - first group -> author
+    #   group(2) - second group -> quote
+    # quotes = quotes_regex.finditer(html)
+    #
+    # quotes_dict = {
+    #     m.group(2): m.group(1)
+    #     for m in quotes
+    # }
+
     quotes_dict = {
         author: quote
         for quote, author in quotes
     }
-
     return quotes_dict
