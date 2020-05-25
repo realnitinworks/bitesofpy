@@ -36,7 +36,7 @@ artagnon:x:1005:1005:Ramkumar R,,,,Git GSOC:/home/artagnon:/bin/bash"""
 
 
 def passwd_lines(passwd_output):
-    yield from passwd_output.split("\n")
+    yield from passwd_output.splitlines()
 
 
 def user_shell(passwd_output):
