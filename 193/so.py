@@ -27,4 +27,4 @@ def top_python_questions(url=cached_so_url):
     )
 
     # sorted on the votes in descending order.
-    return sorted(most_voted_questions, key=lambda x: x[1], reverse=True)
+    yield from sorted(most_voted_questions, key=lambda x: x[1], reverse=True)
