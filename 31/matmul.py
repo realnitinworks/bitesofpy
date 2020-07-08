@@ -32,9 +32,5 @@ class Matrix(object):
         return self @ other
 
     def __imatmul__(self, other):
-        result_matrix = self @ other
-        for i in range(len(self)):
-            for j in range(len(self.values[0])):
-                self.values[i][j] = result_matrix.values[i][j]
-
+        self.values = (self @ other).values
         return self
