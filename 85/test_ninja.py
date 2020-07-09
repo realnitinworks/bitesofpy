@@ -37,6 +37,11 @@ def test_new_score_validation(ninja):
         ninja.score = 40
 
 
+def test_new_score_lower(ninja):
+    with pytest.raises(ValueError):
+        ninja.score = 20
+
+
 def test_add_score_another_new_belt(ninja, capfd):
     ninja.score = 50
     output = capfd.readouterr()[0].split('\n')

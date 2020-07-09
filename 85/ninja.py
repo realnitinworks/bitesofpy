@@ -26,7 +26,10 @@ class NinjaBelt:
     @score.setter
     def score(self, new_score):
         if not isinstance(new_score, int):
-            raise ValueError
+            raise ValueError("Score must be an integer")
+
+        if new_score < self._score:
+            raise ValueError("Score cannot be lower than previous")
 
         belt = self._get_belt(new_score)
         if belt != self._last_earned_belt:
