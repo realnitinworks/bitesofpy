@@ -32,9 +32,10 @@ class NinjaBelt:
             raise ValueError("Score cannot be lower than previous")
 
         belt = self._get_belt(new_score)
-        if belt != self._last_earned_belt:
-            self._last_earned_belt = belt
+        if belt != self._last_earned_belt:            
             print(CONGRATS_MSG.format(score=new_score, rank=belt))
         else:
-            self._score = new_score
             print(NEW_SCORE_MSG.format(score=new_score))
+
+        self._last_earned_belt = belt
+        self._score = new_score
