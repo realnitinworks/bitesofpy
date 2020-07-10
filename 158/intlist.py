@@ -1,33 +1,27 @@
 import statistics as stat
-from decimal import Decimal
 
 
 class IntList(list):
-    def __init__(self, values):
-        self.values = values
-        super().__init__(values)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     @property
     def mean(self):
-        return stat.mean(self.values)
+        return stat.mean(self)
 
     @property
     def median(self):
-        return stat.median(self.values)
+        return stat.median(self)
 
-    def _validate_and_convert(self, values):
-        modified = []
-        for value in values:
-            if isinstance(value, Decimal):
-                value = float(value)
-            if type(value) not in {int, float}:
-                raise TypeError
-            modified.append(value)
-        return modified
+    def _validate_int(self, values):
+        try:
+            return [int(value) for value in values]
+        except ValueError:
+            raise TypeError
 
     def extend(self, values):
-        values = self._validate_and_convert(values)
-        self.values.extend(values)
+        values = self._validate_int(values)
+        super().extend(values)
 
     def append(self, values):
         if isinstance(values, list):
@@ -36,9 +30,15 @@ class IntList(list):
             self.extend([values])
 
     def __add__(self, other):
-        other = self._validate_and_convert(other)
-        return self.values + other
+        values = self._validate_int(other)
+        return super().__add__(values)
 
     def __iadd__(self, other):
-        self.values = self.__add__(other)
-        return self.values
+        # Delegating to this class's __add__ method
+        self = self.__add__(other)
+        return self
+
+        # The following also works
+        # Delegating to list's __iadd__ method
+        # values = self._validate_int(other)
+        # return super().__iadd__(values)
