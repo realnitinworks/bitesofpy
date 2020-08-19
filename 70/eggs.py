@@ -12,7 +12,7 @@ class EggCreator:
         return self
 
     def __next__(self):
-        while self.index < self.limit:
+        if self.index < self.limit:
             self.index += 1
             return f"{choice(COLORS)} egg"
         raise StopIteration
