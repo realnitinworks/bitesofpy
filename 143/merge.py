@@ -14,9 +14,6 @@ def get_person_age(name):
     """
 
     for group in groups:
-        try:
-            if name.lower() in group:
-                return group[name.lower()]
-        except AttributeError:
-            break
+        if str(name).lower() in group:
+            return group[name.lower()]
     return NOT_FOUND
