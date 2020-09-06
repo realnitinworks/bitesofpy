@@ -1,3 +1,6 @@
+from itertools import chain
+
+
 STAR = '*'
 
 
@@ -22,6 +25,5 @@ def gen_rhombus(width):
         range(width - 2, 0, -2)  # Lower part of rhombus
     ]
 
-    for part in rhombus:
-        for n in part:
-            yield f"{STAR * n:^{width}}"  # :^ => aligns center
+    for n in chain.from_iterable(rhombus):
+        yield f"{STAR * n:^{width}}"  # :^ => aligns center
