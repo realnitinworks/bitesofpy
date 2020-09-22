@@ -16,7 +16,7 @@ class Employee:
     first_name: str
     last_name: str
     days_per_week: int
-    hours_per_day: int
+    hours_per_day: float
     wage: float
 
     def _rounder(self, number: float, places: int) -> str:
