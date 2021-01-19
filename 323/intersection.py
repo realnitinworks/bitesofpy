@@ -9,7 +9,6 @@ def intersection(*args: Iterable) -> Set[Any]:
     except StopIteration:
         return set()
 
-    for arg in args:
-        result = result.intersection(arg)
+    result = result.intersection(*args)
     return result
 
